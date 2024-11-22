@@ -1,0 +1,70 @@
+///////////////////////////////////////////////////
+window.socket = new WebSocket('ws://localhost:3000');
+
+socket.onopen = () => {
+    console.log('Conexión establecida con el servidor WebSocket');
+};
+
+socket.onmessage = (event) => {
+    console.log('Mensaje recibido del servidor:', event.data);
+};
+
+socket.onclose = () => {
+    console.log('Conexión WebSocket cerrada');
+};
+
+socket.onerror = (error) => {
+    console.error('Error en el WebSocket:', error);
+};
+
+
+///////////////////////////////////////////////////
+REGISTRO JUGADOR
+
+socket.send(JSON.stringify({
+    action: 'user-register',
+    data: { name: 'Julio Acosta' }
+}));
+
+///////////////////////////////////////////////////
+RECONEXION JUGADOR
+
+socket.send(JSON.stringify({
+    action: 'user-reconnect',
+    data: { id: 'ID_DEL_USUARIO' }
+}));
+
+///////////////////////////////////////////////////
+ESTADO ACTUAL DEL JUEGO
+
+socket.send(JSON.stringify({
+    event: 'update-game',
+    data: {}
+}));
+
+
+///////////////////////////////////////////////////
+ELEGIR DEFENSOR
+
+socket.send(JSON.stringify({
+    action: 'choose-defender',
+    data: { id: 'ID_DEL_DEFENSOR' }
+}));
+
+
+///////////////////////////////////////////////////
+ELEGIR CARTA
+
+socket.send(JSON.stringify({
+    action: 'choose-card',
+    data: { card: 'ID_DE_LA_CARTA' }
+}));
+
+
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
